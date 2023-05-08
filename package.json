@@ -1,0 +1,26 @@
+{
+  "name": "spektrer-next-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@chakra-ui/react": "^2.6.1",
+    "@clerk/clerk-react": "^4.15.4",
+    "@clerk/clerk-sdk-node": "^4.8.7",
+    "@clerk/nextjs": "^4.17.1",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/inter": "^4.5.15",
+    "framer-motion": "^4.1.17",
+    "next": "^13.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
