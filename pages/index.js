@@ -1,8 +1,17 @@
-import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from '@clerk/nextjs'
-import { UserButton } from '@clerk/nextjs'
-import { useRouter } from 'next/router'
+import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from '@clerk/nextjs';
+import { UserButton } from '@clerk/nextjs';
+import { useRouter } from 'next/router';
+import * as FramerMotion from 'framer-motion';
+import Header from '../components/header.js';
+import Footer from '../components/footer';
 
-export default function Home() {
+const { motion } = FramerMotion;
+const h1Variants = {
+  hidden: { opacity: 0, y: -50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1 } }
+};
+
+export default function SpektrerApp() {
   const router = useRouter()
 
   return (
@@ -10,30 +19,26 @@ export default function Home() {
       frontendApi={process.env.NEXT_PUBLIC_CLERK_FRONTEND_API}
       navigate={router.push}
     >
-      <nav style={{ backgroundColor: 'black', color: 'white', padding: '10px' }}>
-        <UserButton />
-      </nav>
-      <main>
+      <Header />
+      <div>
         <SignedIn>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: 'blue' }}>Welcome to your dashboard!</h1>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', padding: '10px' }}>
-              <div style={{ backgroundColor: 'white', height: '100px', border: '1px solid black', boxShadow: '2px 2px 5px #888888' }}></div>
-              <div style={{ backgroundColor: 'white', height: '100px', border: '1px solid black', boxShadow: '2px 2px 5px #888888' }}></div>
-              <div style={{ backgroundColor: 'white', height: '100px', border: '1px solid black', boxShadow: '2px 2px 5px #888888' }}></div>
-              <div style={{ backgroundColor: 'white', height: '100px', border: '1px solid black', boxShadow: '2px 2px 5px #888888' }}></div>
-              <div style={{ backgroundColor: 'white', height: '100px', border: '1px solid black', boxShadow: '2px 2px 5px #888888' }}></div>
-              <div style={{ backgroundColor: 'white', height: '100px', border: '1px solid black', boxShadow: '2px 2px 5px #888888' }}></div>
+            <motion.h1 variants={h1Variants} initial="hidden" animate="visible" style={{ fontSize: '24px', fontWeight: 'bold', color: 'blue' }}>Welcome to your dashboard!</motion.h1>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '10px', padding: '10px' }}>
+              <div style={{ backgroundColor: 'red', height: '100px' }}></div>
+              <div style={{ backgroundColor: 'green', height: '100px' }}></div>
+              <div style={{ backgroundColor: 'blue', height: '100px' }}></div>
+              <div style={{ backgroundColor: 'yellow', height: '100px' }}></div>
+              <div style={{ backgroundColor: 'orange', height: '100px' }}></div>
+              <div style={{ backgroundColor: 'purple', height: '100px' }}></div>
             </div>
-            <footer style={{ backgroundColor: 'black', color: 'white', padding: '10px', marginTop: 'auto' }}>
-              <p style={{ textAlign: 'center' }}>About Us</p>
-            </footer>
+            <Footer />
           </div>
         </SignedIn>
         <SignedOut>
           <RedirectToSignIn />
         </SignedOut>
-      </main>
+      </div>
     </ClerkProvider>
-  )
+  );
 }
