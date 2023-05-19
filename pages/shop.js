@@ -7,10 +7,6 @@ import Footer from '../components/footer';
 import Glasses from '../components/animation';
 import Products from '../components/products';
 import About from '../components/about.js';
-import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../chakra.config";
-
-
 
 const { motion } = FramerMotion;
 const h1Variants = {
@@ -33,7 +29,6 @@ export default function SpektrerApp() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <motion.h1 variants={h1Variants} initial="hidden" animate="visible" style={{ fontSize: '24px', fontWeight: 'bold', color: 'blue' }}>Welcome to your dashboard!</motion.h1>
             <Products />
-            <About />
             <Footer />
           </div>
         </SignedIn>
