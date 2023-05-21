@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Box, Button, Grid, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, ModalHeader, Text } from '@chakra-ui/react';
+
 
 const images = [
   {

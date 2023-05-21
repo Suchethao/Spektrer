@@ -13,13 +13,14 @@ const ProductCard = ({ imageSrc, productName, price }) => {
       boxShadow="md"
       transition="transform 0.3s"
       _hover={{ transform: 'scale(1.02)' }}
-      bg="black" // Set the background color to black
+      bg="white" // Set the background color of the product card to white
+      color="black" // Set the text color to black
     >
       <Image src={imageSrc} alt={productName} />
 
       <Box p="6">
         <Box d="flex" justifyContent="space-between" alignItems="baseline">
-          <Text fontWeight="semibold" fontSize="xl" color="white">
+          <Text fontWeight="semibold" fontSize="xl">
             {productName}
           </Text>
           <Text fontSize="lg" color="gray.500">
@@ -45,26 +46,28 @@ const ProductCard = ({ imageSrc, productName, price }) => {
 
 const Products = () => {
   return (
-    <Center bg="black" p="4" mt="4"> {/* Add Center component to center align the content */}
-      <Flex flexWrap="wrap" justifyContent="center" m="-2" maxW="100vw"> {/* Add maxW="100vw" to make the component full width */}
-        {/* Add negative margin to create spacing */}
-        <ProductCard
-          imageSrc="https://via.placeholder.com/300x300.png?text=Product+1"
-          productName="Product 1"
-          price={999}
-        />
-        <ProductCard
-          imageSrc="https://via.placeholder.com/300x300.png?text=Product+2"
-          productName="Product 2"
-          price={1299}
-        />
-        <ProductCard
-          imageSrc="https://via.placeholder.com/300x300.png?text=Product+3"
-          productName="Product 3"
-          price={1799}
-        />
-      </Flex>
-    </Center>
+    <Box bg="black" p="4" mt="4" w="100vw"> {/* Set the background color of the component to black and width to 100vw */}
+      <Center>
+        <Flex flexWrap="wrap" justifyContent="center" m="-2">
+          {/* Add negative margin to create spacing */}
+          <ProductCard
+            imageSrc="https://via.placeholder.com/300x300.png?text=Product+1"
+            productName="Product 1"
+            price={999}
+          />
+          <ProductCard
+            imageSrc="https://via.placeholder.com/300x300.png?text=Product+2"
+            productName="Product 2"
+            price={1299}
+          />
+          <ProductCard
+            imageSrc="https://via.placeholder.com/300x300.png?text=Product+3"
+            productName="Product 3"
+            price={1799}
+          />
+        </Flex>
+      </Center>
+    </Box>
   );
 };
 

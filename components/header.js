@@ -1,4 +1,6 @@
-import { Flex, Text, Button, ChakraProvider } from "@chakra-ui/react";
+import { useState } from "react";
+import { Flex, Text, Button, ChakraProvider, Box } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import theme from "../chakra.config";
@@ -11,66 +13,82 @@ export default function Header() {
         align="center"
         justify="space-between"
         wrap="wrap"
-        bg="#f58024" // Update background color to Hermes orange (#f58024)
+        bg="black" // Update background color to black
         color="white"
         padding="1.5rem"
         boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
       >
-        <Flex align="center" mr={5}>
-          <Text fontSize="lg" fontWeight="bold">
-            Logo
-          </Text>
+        <Flex align="center">
+          <DropdownMenu />
         </Flex>
-
-        <Flex justify="center" align="center">
-          <Link href="/about">
-            <Button
-              variant="ghost"
-              colorScheme="white" // Update colorScheme to "white" for white color
-              size="sm"
-              mr={2}
-              _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
-            >
-              About
-            </Button>
-          </Link>
-          <Link href="/shop">
-            <Button
-              variant="ghost"
-              colorScheme="white" // Update colorScheme to "white" for white color
-              size="sm"
-              mr={2}
-              _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
-            >
-              Shop
-            </Button>
-          </Link>
-          <Link href="/festivals">
-            <Button
-              variant="ghost"
-              colorScheme="white" // Update colorScheme to "white" for white color
-              size="sm"
-              mr={2}
-              _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
-            >
-              Festivals
-            </Button>
-          </Link>
-          <Link href="/contact">
-            <Button
-              variant="ghost"
-              colorScheme="white" // Update colorScheme to "white" for white color
-              size="sm"
-              mr={2}
-              _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
-            >
-              Contact
-            </Button>
-          </Link>
+        
+        <Flex align="center" mr={5}>
+          <img
+            src="https://i.ibb.co/ZNsV8Xj/Spektrer-Logo.png" // Replace with the new image URL
+            alt="Logo"
+            style={{ height: "45px" }} // Adjust the height as needed
+          />
         </Flex>
 
         <UserButton />
       </Flex>
     </ChakraProvider>
+  );
+}
+
+function DropdownMenu() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <Box position="relative">
+      <Button
+        variant="ghost"
+        colorScheme="orange" // Update colorScheme to "orange" for Hermes orange color
+        size="sm"
+        mr={2}
+        _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
+        rightIcon={<HamburgerIcon />}
+        onClick={handleToggle}
+      />
+      {isOpen && (
+        <Box
+          position="absolute"
+          top="100%"
+          right="0"
+          mt={2}
+          p={2}
+          bg="white"
+          color="black"
+          boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
+          zIndex="999"
+          borderRadius="md"
+        >
+          <DropdownItem href="/about">About</DropdownItem>
+          <DropdownItem href="/shop">Shop</DropdownItem>
+          <DropdownItem href="/contact">Contact</DropdownItem>
+        </Box>
+      )}
+    </Box>
+  );
+}
+
+function DropdownItem({ href, children }) {
+  return (
+    <Link href={href}>
+      <Button
+        variant="ghost"
+        colorScheme="orange" // Update colorScheme to "orange" for Hermes orange color
+        size="sm"
+        width="100%"
+        mb={2}
+        _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
+      >
+        {children}
+      </Button>
+    </Link>
   );
 }
