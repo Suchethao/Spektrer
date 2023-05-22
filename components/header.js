@@ -13,7 +13,7 @@ export default function Header() {
         align="center"
         justify="space-between"
         wrap="wrap"
-        bg="black" // Update background color to black
+        bg="white" // Update background color to black
         color="white"
         padding="1.5rem"
         boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
@@ -21,14 +21,18 @@ export default function Header() {
         <Flex align="center">
           <DropdownMenu />
         </Flex>
-        
-        <Flex align="center" mr={5}>
-          <img
-            src="https://i.ibb.co/ZNsV8Xj/Spektrer-Logo.png" // Replace with the new image URL
-            alt="Logo"
-            style={{ height: "45px" }} // Adjust the height as needed
-          />
-        </Flex>
+
+        <Link href="/" passHref>
+          <LinkWrapper>
+            <Flex align="center" mr={5}>
+              <img
+                src="https://i.ibb.co/sbgt3cQ/spektrer-web-title.png" // Replace with the new image URL
+                alt="Logo"
+                style={{ height: "70px" }} // Adjust the height as needed
+              />
+            </Flex>
+          </LinkWrapper>
+        </Link>
 
         <UserButton />
       </Flex>
@@ -58,7 +62,7 @@ function DropdownMenu() {
         <Box
           position="absolute"
           top="100%"
-          right="0"
+          left="30"
           mt={2}
           p={2}
           bg="white"
@@ -92,3 +96,5 @@ function DropdownItem({ href, children }) {
     </Link>
   );
 }
+
+const LinkWrapper = ({ children }) => <div style={{ cursor: "pointer" }}>{children}</div>;

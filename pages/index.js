@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import * as FramerMotion from 'framer-motion';
 import Header from '../components/header.js';
 import Footer from '../components/footer';
-import Glasses from '../components/animation';
+import Animation from '../components/animation';
 import Products from '../components/products';
 import About from '../components/about.js';
 import Gallery from '../components/festivals.js';
@@ -28,7 +28,7 @@ export default function SpektrerApp() {
       navigate={router.push}
     >
       <Header />
-      <Glasses />
+      <Animation />
       <div>
         <SignedIn>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
