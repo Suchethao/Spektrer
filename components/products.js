@@ -4,7 +4,7 @@ import { Box, Button, Image, Text, Flex, Center } from '@chakra-ui/react';
 const ProductCard = ({ imageSrc, productName, price }) => {
   return (
     <Box
-      flex="1"
+      display="flex"
       maxW="sm"
       borderWidth="1px"
       borderRadius="lg"
@@ -16,14 +16,12 @@ const ProductCard = ({ imageSrc, productName, price }) => {
       bg="white" // Set the background color of the product card to white
       color="black" // Set the text color to black
     >
-      <Image src={imageSrc} alt={productName} />
-
-      <Box p="6">
-        <Box d="flex" justifyContent="space-between" alignItems="baseline">
-          <Text fontWeight="semibold" fontSize="xl">
+      <Box flex="1" p="6">
+        <Box>
+          <Text fontWeight="semibold" fontSize="xl" mb="2">
             {productName}
           </Text>
-          <Text fontSize="lg" color="gray.500">
+          <Text fontSize="lg" color="gray.500" mb="4">
             ${price}
           </Text>
         </Box>
@@ -40,6 +38,10 @@ const ProductCard = ({ imageSrc, productName, price }) => {
           Add to Cart
         </Button>
       </Box>
+
+      <Box flex="1">
+        <Image src={imageSrc} alt={productName} objectFit="cover" />
+      </Box>
     </Box>
   );
 };
@@ -52,18 +54,13 @@ const Products = () => {
           {/* Add negative margin to create spacing */}
           <ProductCard
             imageSrc="https://via.placeholder.com/300x300.png?text=Product+1"
-            productName="Product 1"
-            price={999}
+            productName="Spektrer Mark 1"
+            price={70}
           />
           <ProductCard
             imageSrc="https://via.placeholder.com/300x300.png?text=Product+2"
-            productName="Product 2"
-            price={1299}
-          />
-          <ProductCard
-            imageSrc="https://via.placeholder.com/300x300.png?text=Product+3"
-            productName="Product 3"
-            price={1799}
+            productName="C Wave"
+            price={140}
           />
         </Flex>
       </Center>

@@ -32,8 +32,8 @@ export default function SpektrerApp() {
       <div>
         <SignedIn>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <About />
             <Products />
+            <About />
             <Gallery />
             <Contact />
             <Footer />

@@ -31,7 +31,7 @@ const Animation = () => {
     transition: 'opacity 0.5s ease-in-out',
     fontFamily: 'Audiowide, sans-serif',
     color: '#fff',
-    fontSize: '40px',
+    fontSize: '3vw',
     fontWeight: 'bold',
     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.6)',
     zIndex: 1,
@@ -70,7 +70,7 @@ const Animation = () => {
                 backgroundColor="white"
                 color="black"
                 position="absolute"
-                bottom="80px"
+                bottom="18vw"
                 left="50%"
                 transform="translateX(-50%)"
               >
