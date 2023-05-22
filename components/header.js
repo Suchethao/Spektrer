@@ -52,10 +52,10 @@ function DropdownMenu() {
       <Button
         variant="ghost"
         colorScheme="orange" // Update colorScheme to "orange" for Hermes orange color
-        size="sm"
+        size="lg" // Increase the size of the button to "lg"
         mr={2}
         _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
-        rightIcon={<HamburgerIcon />}
+        rightIcon={<HamburgerIcon boxSize={8} />} // Increase the size of the HamburgerIcon using the boxSize prop
         onClick={handleToggle}
       />
       {isOpen && (
@@ -98,3 +98,4 @@ function DropdownItem({ href, children }) {
 }
 
 const LinkWrapper = ({ children }) => <div style={{ cursor: "pointer" }}>{children}</div>;
+``
