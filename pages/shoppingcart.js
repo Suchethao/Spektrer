@@ -4,11 +4,8 @@ import { useRouter } from 'next/router';
 import * as FramerMotion from 'framer-motion';
 import Header from '../components/header.js';
 import Footer from '../components/footer';
-import Glasses from '../components/animation';
-import Products from '../components/products';
-import Gallery from '../components/festivals';
-import About from '../components/about.js';
 import CartRender from '../components/cartpage.js';
+import { ChakraProvider, Box, Container, Heading } from '@chakra-ui/react';
 
 const { motion } = FramerMotion;
 const h1Variants = {
@@ -17,26 +14,28 @@ const h1Variants = {
 };
 
 export default function SpektrerApp() {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <ClerkProvider
       frontendApi={process.env.NEXT_PUBLIC_CLERK_FRONTEND_API}
       navigate={router.push}
     >
-      <Header />
-      <Glasses />
-      <div>
-        <SignedIn>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <CartRender />
-            <Footer />
-          </div>
-        </SignedIn>
+      <ChakraProvider>
+        <Header />
+        <Container maxW="container.md" mt={8}>
+          <Heading as="h2" size="lg" textAlign="center" mb={8}>
+            Explore Festivals
+          </Heading>
+          <Box borderWidth="1px" borderRadius="md" p={4} mt={40}>
+            <CartRender />
+          </Box>
+          <Footer />
+        </Container>
         <SignedOut>
           <RedirectToSignIn />
         </SignedOut>
-      </div>
+      </ChakraProvider>
     </ClerkProvider>
   );
 }
