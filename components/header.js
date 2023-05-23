@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Flex, Text, Button, ChakraProvider, Box, Select } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, Icon, ShoppingCartIcon } from "@chakra-ui/icons";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import theme from "../chakra.config";
@@ -35,12 +35,18 @@ export default function Header() {
             </LinkWrapper>
           </Link>
 
-          <UserButton />
+          <Flex align="center">
+          <Icon as={ShoppingCartIcon} boxSize={8} color="gray.600" />
+            <UserButton />
+          </Flex>
         </Flex>
       </header>
     </ChakraProvider>
   );
 }
+
+// Rest of the code remains the same
+
 
 
 function DropdownMenu() {

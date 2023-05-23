@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box, Text, Flex, ChakraProvider, IconButton } from '@chakra-ui/react';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { CloseIcon } from '@chakra-ui/icons';
+import { Box, Text, Flex, ChakraProvider, Button } from '@chakra-ui/react';
+import { QueryClient, QueryClientProvider, useQuery, useMutation } from 'react-query';
 
 const queryClient = new QueryClient();
 
@@ -12,18 +11,19 @@ const fetchCartItems = async () => {
 };
 
 const removeCartItem = async (productId) => {
-  // TODO: Implement logic to remove the item from the cart
-  const response = await fetch(`/api/cart/${productId}`, { method: 'DELETE' }); // Replace '/api/cart' with your actual API endpoint
-  const data = await response.json();
-  console.log(data);
+  await fetch(`/api/cart/${productId}`, { method: 'DELETE' }); // Replace '/api/cart' with your actual API endpoint
 };
 
 const CartPage = () => {
-  const { data: cartItems = [] } = useQuery('cart', fetchCartItems);
+  const { data: cartItems = [], refetch } = useQuery('cart', fetchCartItems);
+  const removeItemMutation = useMutation(removeCartItem, {
+    onSuccess: () => {
+      refetch();
+    },
+  });
 
-  const handleRemove = (productId) => {
-    removeCartItem(productId);
-    queryClient.invalidateQueries('cart');
+  const handleRemoveItem = (productId) => {
+    removeItemMutation.mutate(productId);
   };
 
   return (
@@ -36,30 +36,13 @@ const CartPage = () => {
           <Text>No items in the cart</Text>
         ) : (
           <Flex direction="column">
-            {/* Map over the cart items and display them */}
             {cartItems.map((item) => (
-              <Box
-                key={item.id}
-                p="4"
-                borderWidth="1px"
-                borderRadius="lg"
-                mb="4"
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Flex alignItems="center">
-                  <Text>{item.name}</Text>
-                  <Text mx="4">${item.price}</Text>
-                </Flex>
-                <IconButton
-                  size="sm"
-                  variant="ghost"
-                  colorScheme="red"
-                  icon={<CloseIcon />}
-                  aria-label="Remove"
-                  onClick={() => handleRemove(item.id)}
-                />
+              <Box key={item.id} p="4" borderWidth="1px" borderRadius="lg" mb="4">
+                <Text>{item.name}</Text>
+                <Text>${item.price}</Text>
+                <Button onClick={() => handleRemoveItem(item.id)} mt="2" size="sm" colorScheme="red">
+                  Remove
+                </Button>
               </Box>
             ))}
           </Flex>

@@ -15,6 +15,7 @@ import CartRender from '../components/cartpage.js';
 
 
 
+
 const { motion } = FramerMotion;
 const h1Variants = {
   hidden: { opacity: 0, y: -50 },
