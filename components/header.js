@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Text, Button, ChakraProvider, Box } from "@chakra-ui/react";
+import { Flex, Text, Button, ChakraProvider, Box, Select } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
@@ -8,37 +8,40 @@ import theme from "../chakra.config";
 export default function Header() {
   return (
     <ChakraProvider theme={theme}>
-      <Flex
-        as="nav"
-        align="center"
-        justify="space-between"
-        wrap="wrap"
-        bg="white" // Update background color to black
-        color="white"
-        padding="1.5rem"
-        boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
-      >
-        <Flex align="center">
-          <DropdownMenu />
+      <header style={{ position: "fixed", top: 0, width: "100%", zIndex: 999 }}>
+        <Flex
+          as="nav"
+          align="center"
+          justify="space-between"
+          wrap="wrap"
+          bg="white"
+          color="white"
+          padding="1.5rem"
+          boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
+        >
+          <Flex align="center">
+            <DropdownMenu />
+          </Flex>
+
+          <Link href="/" passHref>
+            <LinkWrapper>
+              <Flex align="center" mr={5}>
+                <img
+                  src="https://i.ibb.co/sbgt3cQ/spektrer-web-title.png"
+                  alt="Logo"
+                  style={{ height: "70px" }}
+                />
+              </Flex>
+            </LinkWrapper>
+          </Link>
+
+          <UserButton />
         </Flex>
-
-        <Link href="/" passHref>
-          <LinkWrapper>
-            <Flex align="center" mr={5}>
-              <img
-                src="https://i.ibb.co/sbgt3cQ/spektrer-web-title.png" // Replace with the new image URL
-                alt="Logo"
-                style={{ height: "70px" }} // Adjust the height as needed
-              />
-            </Flex>
-          </LinkWrapper>
-        </Link>
-
-        <UserButton />
-      </Flex>
+      </header>
     </ChakraProvider>
   );
 }
+
 
 function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,11 +54,11 @@ function DropdownMenu() {
     <Box position="relative">
       <Button
         variant="ghost"
-        colorScheme="orange" // Update colorScheme to "orange" for Hermes orange color
-        size="lg" // Increase the size of the button to "lg"
+        colorScheme="orange"
+        size="lg"
         mr={2}
-        _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
-        rightIcon={<HamburgerIcon boxSize={8} />} // Increase the size of the HamburgerIcon using the boxSize prop
+        _hover={{ bg: "#d5601f", color: "white" }}
+        rightIcon={<HamburgerIcon boxSize={8} />}
         onClick={handleToggle}
       />
       {isOpen && (
@@ -74,6 +77,7 @@ function DropdownMenu() {
           <DropdownItem href="/about">About</DropdownItem>
           <DropdownItem href="/shop">Shop</DropdownItem>
           <DropdownItem href="/contact">Contact</DropdownItem>
+          <LanguageDropdown />
         </Box>
       )}
     </Box>
@@ -85,11 +89,11 @@ function DropdownItem({ href, children }) {
     <Link href={href}>
       <Button
         variant="ghost"
-        colorScheme="orange" // Update colorScheme to "orange" for Hermes orange color
+        colorScheme="orange"
         size="sm"
         width="100%"
         mb={2}
-        _hover={{ bg: "#d5601f", color: "white" }} // Update hover background color to a darker shade of Hermes orange (#d5601f)
+        _hover={{ bg: "#d5601f", color: "white" }}
       >
         {children}
       </Button>
@@ -97,5 +101,22 @@ function DropdownItem({ href, children }) {
   );
 }
 
+function LanguageDropdown() {
+  const handleLanguageChange = (event) => {
+    const selectedLanguage = event.target.value;
+    // Handle language change logic
+    console.log("Selected Language:", selectedLanguage);
+  };
+
+  return (
+    <Select mt={2} onChange={handleLanguageChange}>
+      <option value="en">English</option>
+      <option value="fr">French</option>
+      <option value="es">Spanish</option>
+      <option value="de">German</option>
+      <option value="nl">Dutch</option>
+    </Select>
+  );
+}
+
 const LinkWrapper = ({ children }) => <div style={{ cursor: "pointer" }}>{children}</div>;
-``

@@ -4,26 +4,40 @@ import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
 
 const Contact = () => {
   return (
-    <Box bg="black" color="white" py="4" width="100%">
-      <Flex justify="center">
-        <Box maxWidth="1200px" width="100%" px="4">
-          <Flex align="center" mb="4">
-            <Icon as={MdLocationOn} boxSize="20px" mr="2" />
-            <Text>123 Street, City, Country</Text>
+    <Box bg="white" color="black" py={10}>
+      <Flex justify="left">
+        <Box maxWidth="1200px" width="100%" px={4}>
+          <Flex align="center" mb={6}>
+            <Icon as={MdLocationOn} boxSize={20} mr={4} />
+            <Text>
+              <a
+                href="https://maps.google.com/?q=Teknikringen+1+Stockholm+Sweden"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'black', textDecoration: 'underline' }}
+              >
+                Teknikringen 1, Stockholm, Sweden
+              </a>
+            </Text>
           </Flex>
 
-          <Flex align="center" mb="4">
-            <Icon as={MdPhone} boxSize="20px" mr="2" />
-            <Text>+1 234 567 890</Text>
+          <Flex align="center" mb={6}>
+            <Icon as={MdPhone} boxSize={20} mr={4} />
+            <Text>
+              <a href="tel:+46728525608" style={{ color: 'black', textDecoration: 'underline' }}>
+                +46 728 525 608
+              </a>
+            </Text>
           </Flex>
 
-          <Flex align="center" mb="4">
-            <Icon as={MdEmail} boxSize="20px" mr="2" />
-            <Text>example@example.com</Text>
+          <Flex align="center" mb={6}>
+            <Icon as={MdEmail} boxSize={20} mr={4} />
+            <Text>
+              <a href="mailto:info@spektrer.com" style={{ color: 'black', textDecoration: 'underline' }}>
+                info@spektrer.com
+              </a>
+            </Text>
           </Flex>
-
-          <Text fontWeight="bold" mb="2">Have any questions?</Text>
-          <Text>If you have any questions or need assistance, feel free to reach out to us.</Text>
         </Box>
       </Flex>
     </Box>

@@ -5,10 +5,12 @@ import * as FramerMotion from 'framer-motion';
 import Header from '../components/header.js';
 import Footer from '../components/footer';
 import Animation from '../components/animation';
-import Products from '../components/products';
+import App from '../components/products';
 import About from '../components/about.js';
 import Gallery from '../components/festivals.js';
 import Contact from '../components/contact.js';
+import Team from '../components/team.js';
+import CartRender from '../components/cartpage.js';
 
 
 
@@ -32,11 +34,13 @@ export default function SpektrerApp() {
       <div>
         <SignedIn>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Products />
+            <App />
             <About />
             <Gallery />
+            <Team />
             <Contact />
             <Footer />
+            <CartRender />
           </div>
         </SignedIn>
         <SignedOut>

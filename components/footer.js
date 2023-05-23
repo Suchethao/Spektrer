@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <ChakraProvider theme={theme}>
       <Box
-        bg="#f58024" // Update background color to Hermes orange (#f58024)
+        bg="#b042ff" // Update background color to Hermes orange (#f58024)
         color="white"
         padding="10px"
         width="100%"

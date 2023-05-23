@@ -1,6 +1,13 @@
 import { useEffect } from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
-import { motion } from "framer-motion";
+import { Box, extendTheme, ChakraProvider } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+
+const theme = extendTheme({
+  fonts: {
+    heading: 'Audiowide, sans-serif',
+    body: 'Audiowide, sans-serif',
+  },
+});
 
 const About = () => {
   useEffect(() => {
@@ -13,12 +20,13 @@ const About = () => {
     // Initialize the YouTube player when the API is ready
     window.onYouTubePlayerAPIReady = () => {
       new window.YT.Player('youtube-player', {
-        videoId: 'FFx178osh-o', // Replace with your YouTube video ID
+        videoId: 'TEcJaJXWjy0', // Replace with your new YouTube video ID
         width: '100%', // Set the width to 100% to span the page
-        height: '360',
+        height: '800',
         playerVars: {
-          autoplay: 1, // Set to 0 if you don't want the video to autoplay
-          controls: 1, // Set to 0 if you don't want to display video controls
+          autoplay: 1, // Set to 1 to autoplay the video
+          controls: 0, // Set to 0 to hide the video controls
+          modestbranding: 1, // Set to 1 to remove the YouTube logo from the player
           rel: 0, // Set to 0 to disable related videos at the end
         },
       });
@@ -26,41 +34,11 @@ const About = () => {
   }, []);
 
   return (
-    <Box
-      position="relative"
-      py="80px"
-      bg="black" // Set the background color to black
-      fontFamily="San Francisco, sans-serif"
-      width="100%"
-    >
-      <Box
-        position="absolute"
-        top="50%"
-        left="50%"
-        transform="translate(-50%, -50%)"
-        textAlign="center"
-        zIndex="1"
-      >
-        <Heading as={motion.h1} fontSize="48px" fontWeight="bold" color="#fff">
-          About Spektrer
-        </Heading>
-        <Text
-          as={motion.p}
-          fontSize="20px"
-          lineHeight="1.5"
-          maxW="800px"
-          mx="auto"
-          my="40px"
-          color="#fff"
-          width="80%"
-        >
-When Light Meets Sound        </Text>
+    <ChakraProvider theme={theme}>
+      <Box position="relative" py="80px" bg="black" width="100%">
+        <Box id="youtube-player" />
       </Box>
-      <Box
-        id="youtube-player"
-        filter="brightness(70%)" // Adjust the brightness value as per your preference
-      />
-    </Box>
+    </ChakraProvider>
   );
 };
 

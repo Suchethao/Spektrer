@@ -1,50 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, Grid, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, ModalHeader, Text } from '@chakra-ui/react';
 
-
-const images = [
-  {
-    imageUrl: 'https://picsum.photos/id/1018/300/300',
-    name: 'Festival A',
-    address: '123 Main St, Anytown USA',
-    date: 'June 1-3, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1015/300/300',
-    name: 'Festival B',
-    address: '456 Maple Ave, Anytown USA',
-    date: 'July 4-6, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1019/300/300',
-    name: 'Festival C',
-    address: '789 Elm St, Anytown USA',
-    date: 'August 9-11, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1025/300/300',
-    name: 'Festival D',
-    address: '321 Oak St, Anytown USA',
-    date: 'September 15-17, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1020/300/300',
-    name: 'Festival E',
-    address: '789 Maple Ave, Anytown USA',
-    date: 'October 20-22, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1033/300/300',
-    name: 'Festival F',
-    address: '456 Oak St, Anytown USA',
-    date: 'November 25-27, 2023',
-  }
-  
-  // Add more festivals here
-];
-
 const Gallery = () => {
+  const [festivals, setFestivals] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:3636/festival', { mode: 'no-cors' })
+      .then(response => {
+        // Handle the response here (Note: The response will be opaque)
+        console.log(response);
+        // You won't have access to the response data when using 'no-cors' mode
+        // If you require access to the response data, you should configure the server to include the necessary CORS headers
+      })
+      .catch(error => console.error('Error fetching festivals:', error));
+  }, []);
 
   const handleImageClick = (index) => {
     setSelectedImage(index);
@@ -56,7 +26,7 @@ const Gallery = () => {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '20px' }}>
-      {images.map(({ imageUrl, name, address, date }, index) => (
+      {festivals.map(({ imageUrl, name, address, date }, index) => (
         <div
           key={index}
           style={{ padding: '5px', width: 'calc(33.33% - 10px)', cursor: 'pointer' }}
@@ -95,7 +65,7 @@ const Gallery = () => {
           onClick={handleCloseModal}
         >
           <img
-            src={images[selectedImage].imageUrl}
+            src={festivals[selectedImage].imageUrl}
             alt={`Selected gallery item`}
             style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }}
           />
