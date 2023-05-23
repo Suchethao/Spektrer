@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { Flex, Text, Button, ChakraProvider, Box, Select } from "@chakra-ui/react";
-import { HamburgerIcon, Icon, ShoppingCartIcon } from "@chakra-ui/icons";
+import { Flex, Button, ChakraProvider, Box, Select, Icon } from "@chakra-ui/react";
+import { HamburgerIcon, ShoppingCartIcon } from "@chakra-ui/icons";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import theme from "../chakra.config";
+import { FiShoppingCart } from "react-icons/fi";
+
+const CartIcon = (props) => <Icon as={FiShoppingCart} {...props} />;
 
 export default function Header() {
   return (
@@ -36,7 +39,11 @@ export default function Header() {
           </Link>
 
           <Flex align="center">
-          <Icon as={ShoppingCartIcon} boxSize={8} color="gray.600" />
+            <Link href="/shoppingcart" passHref>
+              <Button as="a" variant="ghost" colorScheme="orange" size="lg" mr={2} _hover={{ bg: "#d5601f", color: "white" }}>
+                <CartIcon boxSize={8} color="gray.600" />
+              </Button>
+            </Link>
             <UserButton />
           </Flex>
         </Flex>
@@ -44,10 +51,6 @@ export default function Header() {
     </ChakraProvider>
   );
 }
-
-// Rest of the code remains the same
-
-
 
 function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,6 +106,7 @@ function DropdownItem({ href, children }) {
       >
         {children}
       </Button>
+
     </Link>
   );
 }

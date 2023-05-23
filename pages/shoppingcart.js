@@ -4,17 +4,11 @@ import { useRouter } from 'next/router';
 import * as FramerMotion from 'framer-motion';
 import Header from '../components/header.js';
 import Footer from '../components/footer';
-import Animation from '../components/animation';
-import App from '../components/products';
+import Glasses from '../components/animation';
+import Products from '../components/products';
+import Gallery from '../components/festivals';
 import About from '../components/about.js';
-import Gallery from '../components/festivals.js';
-import Contact from '../components/contact.js';
-import Team from '../components/team.js';
 import CartRender from '../components/cartpage.js';
-
-
-
-
 
 const { motion } = FramerMotion;
 const h1Variants = {
@@ -31,15 +25,11 @@ export default function SpektrerApp() {
       navigate={router.push}
     >
       <Header />
-      <Animation />
+      <Glasses />
       <div>
         <SignedIn>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <App />
-            <About />
-            <Gallery />
-            <Team />
-            <Contact />
+          <CartRender />
             <Footer />
           </div>
         </SignedIn>
