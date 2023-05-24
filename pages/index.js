@@ -1,4 +1,5 @@
 import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from '@clerk/nextjs';
+import { ChakraProvider, Box, Button } from '@chakra-ui/react';
 import { UserButton } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
 import * as FramerMotion from 'framer-motion';
@@ -39,14 +40,14 @@ export default function SpektrerApp() {
             <About />
             <Gallery />
             <Team />
-            <Contact />
             <Footer />
           </div>
         </SignedIn>
         <SignedOut>
           <RedirectToSignIn />
         </SignedOut>
-      </div>
+        </div>
+      <Contact />
     </ClerkProvider>
   );
 }

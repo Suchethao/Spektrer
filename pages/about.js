@@ -7,6 +7,8 @@ import Footer from '../components/footer';
 import Glasses from '../components/animation';
 import Products from '../components/products';
 import About from '../components/about.js';
+import { ChakraProvider, Box, Button } from '@chakra-ui/react';
+
 
 const { motion } = FramerMotion;
 const h1Variants = {
