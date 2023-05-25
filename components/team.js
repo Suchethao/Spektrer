@@ -18,7 +18,6 @@ const TeamCard = ({ imageSrc, Name, Title }) => {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      m="2"
       boxShadow="md"
       transition="transform 0.3s"
       _hover={{ transform: 'scale(1.02)' }}
@@ -36,8 +35,8 @@ const TeamCard = ({ imageSrc, Name, Title }) => {
             {Name}
           </Text>
           <Text fontSize="lg" color="gray.500">
-{Title}          
-</Text>
+            {Title}
+          </Text>
         </Box>
       </Box>
     </Box>
@@ -46,14 +45,14 @@ const TeamCard = ({ imageSrc, Name, Title }) => {
 
 const Team = () => {
   return (
-    <Box bg="gray.100" p="4" mt="4" h="100vh" display="flex" alignItems="center" justifyContent="center"> {/* Set the background color of the component to a light gray */}
-      <Flex flexWrap="wrap" justifyContent="center" m="-2">
+    <Box bg="gray.100" p="4" mt="4" display="flex" alignItems="center" justifyContent="center"> {/* Set the background color of the component to a light gray */}
+      <Flex flexWrap="wrap" justifyContent="center">
         {/* Add negative margin to create spacing */}
         <TeamCard
           imageSrc="https://i.ibb.co/KjGkyt4/SURANJAN-V1.png" alt="SURANJAN-V1" border="0"
           Name="Suranjan Ram Ottikkutti"
-          Title= "CEO & Founder"
-   />
+          Title="CEO & Founder"
+        />
         <TeamCard
           imageSrc="https://i.ibb.co/vhy1nhV/cissi.jpg" alt="cissi" border="0"
           Name="Cissi Nilsson"
@@ -68,6 +67,5 @@ const Team = () => {
     </Box>
   );
 };
-
 
 export default Team;
