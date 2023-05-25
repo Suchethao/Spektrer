@@ -44,7 +44,7 @@ const Gallery = () => {
         Upcoming Festivals
       </header>
       <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '20px' }}>
-        {festivals.map(({ imageUrl, name, address, date }, index) => (
+        {festivals.map(({ image, name, address, date }, index) => (
           <div
             key={index}
             style={{
@@ -54,7 +54,7 @@ const Gallery = () => {
             }}
           >
             <img
-              src={imageUrl}
+              src={image}
               alt={`Gallery item ${index}`}
               style={{
                 width: '100%',
