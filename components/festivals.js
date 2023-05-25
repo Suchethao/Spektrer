@@ -9,7 +9,13 @@ const Gallery = () => {
     // Fetch festivals data from the API endpoint
     fetch('https://music-festival-api.herokuapp.com/festival')
       .then(response => response.json())
-      .then(data => setFestivals(data))
+      .then(data => {
+        const festivalsWithLinks = data.map(festival => ({
+          ...festival,
+          link: festival.website, // Assuming the festival's website URL is available as 'website' property
+        }));
+        setFestivals(festivalsWithLinks);
+      })
       .catch(error => console.log(error));
   }, []);
 
@@ -29,8 +35,12 @@ const Gallery = () => {
     return likedFestivals.includes(index);
   };
 
+  const redirectToLink = (link) => {
+    window.open(link, '_blank'); // Open the festival link in a new tab
+  };
+
   return (
-    <div>
+    <div style={{ marginLeft: '3vw' }}>
       <header
         style={{
           fontFamily: 'Audiowide, cursive',
@@ -44,7 +54,7 @@ const Gallery = () => {
         Upcoming Festivals
       </header>
       <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '20px' }}>
-        {festivals.map(({ image, name, address, date }, index) => (
+        {festivals.map(({ image, name, address, date, link }, index) => (
           <div
             key={index}
             style={{
@@ -90,6 +100,7 @@ const Gallery = () => {
                     fontSize: '12px',
                     cursor: 'pointer',
                   }}
+                  onClick={() => redirectToLink(link)}
                 >
                   Tickets
                 </button>

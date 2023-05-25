@@ -21,7 +21,7 @@ const About = () => {
     window.onYouTubePlayerAPIReady = () => {
       new window.YT.Player('youtube-player', {
         videoId: 'TEcJaJXWjy0', // Replace with your new YouTube video ID
-        width: '100%', // Set the width to 100% to span the page
+        width: '80%', // Set the width to 100% to span the page
         height: '800',
         playerVars: {
           autoplay: 1, // Set to 1 to autoplay the video
