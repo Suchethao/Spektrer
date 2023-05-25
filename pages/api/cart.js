@@ -1,8 +1,8 @@
 // pages/api/cart.js
 
 const cartItems = [
-    { id: 1, name: 'Product 1', price: 10 },
-    { id: 2, name: 'Product 2', price: 20 },
+    { id: 1, name: 'Spektrer Mark', price: 70 },
+    { id: 2, name: 'C Wave', price: 140 },
     // Add more cart items as needed
   ];
   
