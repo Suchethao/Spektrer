@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Text, Flex, Center } from '@chakra-ui/react';
 
-const TeamCard = ({ imageSrc, productName, price }) => {
+const TeamCard = ({ imageSrc, Name, Title }) => {
   const backgroundImageStyle = {
     backgroundImage: `url(${imageSrc})`,
     backgroundSize: 'cover',
@@ -33,11 +33,11 @@ const TeamCard = ({ imageSrc, productName, price }) => {
       <Box p="6">
         <Box d="flex" justifyContent="space-between" alignItems="center">
           <Text fontWeight="semibold" fontSize="xl">
-            {productName}
+            {Name}
           </Text>
           <Text fontSize="lg" color="gray.500">
-            ${price}
-          </Text>
+{Title}          
+</Text>
         </Box>
       </Box>
     </Box>
@@ -51,18 +51,18 @@ const Team = () => {
         {/* Add negative margin to create spacing */}
         <TeamCard
           imageSrc="https://i.ibb.co/KjGkyt4/SURANJAN-V1.png" alt="SURANJAN-V1" border="0"
-          productName="Spektrer Mark 1"
-          price={70}
-        />
+          Name="Suranjan Ram Ottikkutti"
+          Title= "CEO & Founder"
+   />
         <TeamCard
           imageSrc="https://i.ibb.co/vhy1nhV/cissi.jpg" alt="cissi" border="0"
-          productName="C Wave"
-          price={140}
+          Name="Cissi Nilsson"
+          Title="Marketing Manager"
         />
         <TeamCard
           imageSrc="https://i.ibb.co/521wN1F/harshdeep.jpg" alt="harshdeep" border="0"
-          productName="C Wave"
-          price={140}
+          Name="Harshdeep Parmar"
+          Title="CTO"
         />
       </Flex>
     </Box>
