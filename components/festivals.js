@@ -1,106 +1,120 @@
-import React, { useState } from 'react';
-import { Box, Button, Grid, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter, ModalHeader, Text } from '@chakra-ui/react';
-
-
-const images = [
-  {
-    imageUrl: 'https://picsum.photos/id/1018/300/300',
-    name: 'Festival A',
-    address: '123 Main St, Anytown USA',
-    date: 'June 1-3, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1015/300/300',
-    name: 'Festival B',
-    address: '456 Maple Ave, Anytown USA',
-    date: 'July 4-6, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1019/300/300',
-    name: 'Festival C',
-    address: '789 Elm St, Anytown USA',
-    date: 'August 9-11, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1025/300/300',
-    name: 'Festival D',
-    address: '321 Oak St, Anytown USA',
-    date: 'September 15-17, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1020/300/300',
-    name: 'Festival E',
-    address: '789 Maple Ave, Anytown USA',
-    date: 'October 20-22, 2023',
-  },
-  {
-    imageUrl: 'https://picsum.photos/id/1033/300/300',
-    name: 'Festival F',
-    address: '456 Oak St, Anytown USA',
-    date: 'November 25-27, 2023',
-  }
-  
-  // Add more festivals here
-];
+import React, { useState, useEffect } from 'react';
+import { FaHeart } from 'react-icons/fa';
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [festivals, setFestivals] = useState([]);
+  const [likedFestivals, setLikedFestivals] = useState([]);
 
-  const handleImageClick = (index) => {
-    setSelectedImage(index);
+  useEffect(() => {
+    // Fetch festivals data from the API endpoint
+    fetch('http://localhost:3636/festival')
+      .then(response => response.json())
+      .then(data => setFestivals(data))
+      .catch(error => console.log(error));
+  }, []);
+
+  const handleLike = (index) => {
+    const liked = likedFestivals.includes(index);
+
+    if (liked) {
+      // Remove from liked festivals
+      setLikedFestivals(likedFestivals.filter((item) => item !== index));
+    } else {
+      // Add to liked festivals
+      setLikedFestivals([...likedFestivals, index]);
+    }
   };
 
-  const handleCloseModal = () => {
-    setSelectedImage(null);
+  const isLiked = (index) => {
+    return likedFestivals.includes(index);
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '20px' }}>
-      {images.map(({ imageUrl, name, address, date }, index) => (
-        <div
-          key={index}
-          style={{ padding: '5px', width: 'calc(33.33% - 10px)', cursor: 'pointer' }}
-          onClick={() => handleImageClick(index)}
-        >
-          <img
-            src={imageUrl}
-            alt={`Gallery item ${index}`}
-            style={{ width: '100%', height: 'auto' }}
-          />
-          <div style={{ marginTop: '10px' }}>
-            <div style={{ fontWeight: 'bold' }}>{name}</div>
-            <div>{address}</div>
-            <div>{date}</div>
+    <div>
+      <header
+        style={{
+          fontFamily: 'Audiowide, cursive',
+          fontSize: '32px',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          margin: '20px 0',
+          animation: 'fadeIn 1s ease-in-out',
+        }}
+      >
+        Upcoming Festivals
+      </header>
+      <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '20px' }}>
+        {festivals.map(({ imageUrl, name, address, date }, index) => (
+          <div
+            key={index}
+            style={{
+              padding: '10px',
+              width: 'calc(33.33% - 20px)',
+              cursor: 'pointer',
+            }}
+          >
+            <img
+              src={imageUrl}
+              alt={`Gallery item ${index}`}
+              style={{
+                width: '100%',
+                height: '0',
+                paddingBottom: '100%',
+                objectFit: 'cover',
+                borderRadius: '5px',
+              }}
+            />
             <div style={{ marginTop: '10px' }}>
-              <button style={{ marginRight: '10px' }}>Tickets</button>
-              <button>Heart</button>
+              <p
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: '14px',
+                  color: '#262626',
+                }}
+              >
+                {name}
+              </p>
+              <p style={{ fontSize: '12px', color: '#999999' }}>
+                {address}
+              </p>
+              <p style={{ fontSize: '12px', color: '#999999' }}>{date}</p>
+              <div style={{ marginTop: '10px' }}>
+                <button
+                  style={{
+                    backgroundColor: '#ffffff',
+                    color: '#0095f6',
+                    padding: '5px 10px',
+                    marginRight: '10px',
+                    border: '1px solid #0095f6',
+                    borderRadius: '5px',
+                    fontSize: '12px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Tickets
+                </button>
+                <button
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    padding: '0',
+                    cursor: 'pointer',
+                  }}
+                  onClick={() => handleLike(index)}
+                >
+                  <FaHeart
+                    size={18}
+                    color={isLiked(index) ? '#ed4956' : '#999999'}
+                    style={{
+                      transition: 'color 0.3s',
+                    }}
+                  />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-      {selectedImage !== null && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.75)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 999,
-          }}
-          onClick={handleCloseModal}
-        >
-          <img
-            src={images[selectedImage].imageUrl}
-            alt={`Selected gallery item`}
-            style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }}
-          />
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };

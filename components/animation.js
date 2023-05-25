@@ -11,6 +11,8 @@ const Animation = () => {
     width: '100%',
     height: '20vh',
     paddingTop: '56.25%', // 16:9 aspect ratio (adjust as needed)
+    paddingBottom: '0', // Remove the white margin at the bottom
+
   };
 
   const videoStyle = {

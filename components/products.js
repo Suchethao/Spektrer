@@ -17,9 +17,11 @@ const addToCart = async (productName) => {
 const ProductCard = ({ imageSrc, productName, price }) => {
   return (
     <Box
+      position="relative"
       padding="6vw"
       flex="1"
-      maxW="sm"
+      maxW="40vw"
+      maxH="40vw"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -42,9 +44,9 @@ const ProductCard = ({ imageSrc, productName, price }) => {
       bg="#000000"
       color="#ffffff"
     >
-      <Image src={imageSrc} alt={productName} />
+      <Image src={imageSrc} alt={productName} objectFit="cover" maxW="20vw" maxH="20vw" />
 
-      <Box p="6">
+      <Box position="absolute" bottom="1vw" p="6" w="100%">
         <Box d="flex" justifyContent="space-between" alignItems="baseline">
           <Text fontWeight="semibold" fontSize="xl">
             {productName}
@@ -80,12 +82,16 @@ const Products = () => {
         <Center>
           <Flex flexWrap="wrap" justifyContent="center" m="-2">
             <ProductCard
-              imageSrc="https://via.placeholder.com/300x300.png?text=Product+1"
+              imageSrc="https://i.ibb.co/K5JtB72/40e3f938-8bce-40a5-af65-fbb3d8ec352f.png"
+              alt="40e3f938-8bce-40a5-af65-fbb3d8ec352f"
+              border="0"
               productName="Spektrer Mark 1"
               price={70}
             />
             <ProductCard
-              imageSrc="https://via.placeholder.com/300x300.png?text=Product+2"
+              imageSrc="https://i.ibb.co/51R1D7d/Screen-Shot-2023-05-25-at-11-23-21-AM.png"
+              alt="Screen-Shot-2023-05-25-at-11-01-03-AM"
+              border="0"
               productName="C Wave"
               price={140}
             />

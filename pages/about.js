@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import Glasses from '../components/animation';
 import Products from '../components/products';
 import About from '../components/about.js';
+import DescriptionBox from '../components/description.js';
 import { ChakraProvider, Box, Button } from '@chakra-ui/react';
 
 
@@ -26,6 +27,7 @@ export default function SpektrerApp() {
     >
       <Header />
       <Glasses />
+      <DescriptionBox />
       <div>
         <SignedIn>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

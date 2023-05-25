@@ -28,7 +28,6 @@ export default function SpektrerApp() {
       <div>
         <SignedIn>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <motion.h1 variants={h1Variants} initial="hidden" animate="visible" style={{ fontSize: '24px', fontWeight: 'bold', color: 'blue' }}>Welcome to your dashboard!</motion.h1>
             <Products />
             <Footer />
           </div>
@@ -37,7 +36,6 @@ export default function SpektrerApp() {
           <RedirectToSignIn />
         </SignedOut>
         </div>
-      <Contact />
     </ClerkProvider>
   );
 }

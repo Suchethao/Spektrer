@@ -40,6 +40,7 @@ export default function SpektrerApp() {
             <About />
             <Gallery />
             <Team />
+            <Contact />
             <Footer />
           </div>
         </SignedIn>
@@ -47,7 +48,6 @@ export default function SpektrerApp() {
           <RedirectToSignIn />
         </SignedOut>
         </div>
-      <Contact />
     </ClerkProvider>
   );
 }

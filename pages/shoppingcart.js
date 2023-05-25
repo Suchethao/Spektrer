@@ -1,5 +1,5 @@
 import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from '@clerk/nextjs';
-import { ChakraProvider, Box, Button, Heading } from '@chakra-ui/react';
+import { ChakraProvider, Box, Button, Heading, Container } from '@chakra-ui/react';
 import { UserButton } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
 import * as FramerMotion from 'framer-motion';

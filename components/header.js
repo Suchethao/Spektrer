@@ -85,7 +85,10 @@ function DropdownMenu() {
         >
           <DropdownItem href="/about">About</DropdownItem>
           <DropdownItem href="/shop">Shop</DropdownItem>
+          <DropdownItem href="/festivals">Festivals</DropdownItem>
+          <DropdownItem href="/shoppingcart">Cart</DropdownItem>
           <DropdownItem href="/contact">Contact</DropdownItem>
+          <DropdownItem href="/team">Team</DropdownItem>
           <LanguageDropdown />
         </Box>
       )}
