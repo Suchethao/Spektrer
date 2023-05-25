@@ -22,8 +22,8 @@ const TeamCard = ({ imageSrc, Name, Title }) => {
       boxShadow="md"
       transition="transform 0.3s"
       _hover={{ transform: 'scale(1.02)' }}
-      bg="white" // Set the background color of the product card to white
-      color="black" // Set the text color to black
+      bg="#b042ff" // Set the background color of the product card to white
+      color="white" // Set the text color to black
     >
       <Box
         style={backgroundImageStyle}
