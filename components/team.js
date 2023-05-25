@@ -12,7 +12,7 @@ const TeamCard = ({ imageSrc, Name, Title }) => {
 
   return (
     <Box
-      padding="6vw"
+      padding="1vw"
       flex="1"
       maxW="sm"
       borderWidth="1px"
@@ -30,7 +30,7 @@ const TeamCard = ({ imageSrc, Name, Title }) => {
         backgroundPosition="center" // Center the background image
       />
 
-      <Box p="6">
+      <Box p="2">
         <Box d="flex" justifyContent="space-between" alignItems="center">
           <Text fontWeight="semibold" fontSize="xl">
             {Name}
