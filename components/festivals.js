@@ -67,9 +67,8 @@ const Gallery = () => {
               src={image}
               alt={`Gallery item ${index}`}
               style={{
-                width: '3vw',
-                height: '3vw',
-                paddingBottom: '100%',
+                width: '100%',
+                height: 'auto',
                 objectFit: 'cover',
                 borderRadius: '5px',
               }}
