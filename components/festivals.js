@@ -7,7 +7,7 @@ const Gallery = () => {
 
   useEffect(() => {
     // Fetch festivals data from the API endpoint
-    fetch('http://localhost:3636/festival')
+    fetch('https://music-festival-api.herokuapp.com/festival')
       .then(response => response.json())
       .then(data => setFestivals(data))
       .catch(error => console.log(error));
